@@ -2,9 +2,9 @@ import os
 import time
 
 while loopBack == True:
-	Print('Which Server would you like to store this on? (1) Dunk (2) Funk')
+	print('Which Server would you like to store this on? (1) Dunk (2) Funk')
 	#Defines variables for Funk or Dunk
-	whichServer=input()
+	whichServer = input()
 		if whichServer == 1:
 			path = '/Volumes/Dunk'
 			serverIP = 'afp://192.168.3.95'
@@ -32,7 +32,7 @@ while loopBack == True:
 			print('Would you like to (1) try again, or (2) exit?')
 			tryAgain = input()
 			if tryAgain == 1 :
-				return #double return? Goto line 17?
+				return #Will this return to elif statment?
 			elif tryAgain == 2:
 				exit
 			else
@@ -41,19 +41,19 @@ while loopBack == True:
 
 	#Defines variables to create folders
 	print 'Enter Client Code (Enter it exactly as shown in the ' + shareName + ' folder):'
-	input(clientCode)
-	#Check if Client Code folder exists on server, if not ask user if they want to mkdir)
+	clientCode = input()
+	#Add code to check if Client Code folder exists on server, if not ask user if they want to os.mkdir)
 	print 'Enter Job Number:'
-	input(jobNumber)
+	jobNumber = input()
 	print 'Enter Job Name:'
-	input(jobName)
+	jobName = input()
 	print('Creating folders...')
 
-	#Creates Folders
+	#Function to creat folders
 	def makeFolders(folderName)
-		mkdir path + '/' + clientCode + '/' + jobNumber + ' ' +  jobName + '/' jobNumber + '_' + folderName
+		os.mkdir(path + '/' + clientCode + '/' + jobNumber + ' ' +  jobName + '/' jobNumber + '_' + folderName, mode = Oo777)
 
-	mkdir path + '/' + clientCode + '/' + jobNumber +  jobName
+	os.mkdir(path + '/' + clientCode + '/' + jobNumber +  jobName)
 	makeFolders(PDF)
 	makeFolders(SRC)
 	makeFolders(Layout)
@@ -66,6 +66,7 @@ while loopBack == True:
 	if createAnotherFolder == 'y' OR 'Y' OR 'Yes' #Check OR operator syntax
 		loopBack = True
 	elif createAnotherFolder == 'n' OR 'N' OR 'No'
+		loopBack = False
 		break
 	else
 			print ('error: invalid selection, please enter "y" or "n"')
